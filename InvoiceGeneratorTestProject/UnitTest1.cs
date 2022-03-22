@@ -24,5 +24,13 @@ namespace InvoiceGeneratorTestProject
             double fair = invoiceGenerator.CalculateFair(0, 0);
             Assert.AreEqual(5, fair);
         }
+        [Test]
+        public void CalAggregateForMultipleRides()
+        {
+            invoiceGenerator.AddRide(2, 5);
+            invoiceGenerator.AddRide(12, 15);
+            double fair = invoiceGenerator.CalculateAggregate();
+            Assert.AreEqual(160, fair);
+        }
     }
 }
