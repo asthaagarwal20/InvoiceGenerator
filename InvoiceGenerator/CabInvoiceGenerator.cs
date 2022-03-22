@@ -28,14 +28,20 @@ namespace InvoiceGenerator
                 time = time,
             });
         }
-        public double CalculateAggregate()
+        public InvoiceSummary CalculateAggregate()
         {
             double fair = 0;
             foreach(Ride ride in rides)
             {
                 fair+=CalculateFair(ride.distance,ride.time);
             }
-            return fair;
+            var summary = new InvoiceSummary()
+            {
+                no_of_rides = rides.Count,
+                avgFare=fair/rides.Count,
+                totalFare=fair
+            };
+            return summary;
         }
     }
 }
