@@ -45,7 +45,7 @@ namespace InvoiceGeneratorTestProject
         {
             invoiceGenerator.AddRide(2, 5);
             invoiceGenerator.AddRide(12, 15);
-            var fair = invoiceGenerator.CalculateAggregate();
+            var fair=invoiceGenerator.CalculateAggregate();
             Assert.AreEqual(80, fair.avgFare);
         }
     }
