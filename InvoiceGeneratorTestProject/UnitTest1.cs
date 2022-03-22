@@ -27,26 +27,27 @@ namespace InvoiceGeneratorTestProject
         [Test]
         public void CheckForTotalFare()
         {
-            invoiceGenerator.AddRide(2, 5);
-            invoiceGenerator.AddRide(12, 15);
-            var fair = invoiceGenerator.CalculateAggregate();
-            Assert.AreEqual(160, fair.totalFare);
+
+            invoiceGenerator.AddRide("Astha", 2, 5);
+            invoiceGenerator.AddRide("Asita", 12, 15);
+            var fair = invoiceGenerator.CalculateAggregate("Asita");
+            Assert.AreEqual(135, fair.totalFare);
         }
         [Test]
         public void CheckForNoOfRides()
         {
-            invoiceGenerator.AddRide(2, 5);
-            invoiceGenerator.AddRide(12, 15);
-            var fair= invoiceGenerator.CalculateAggregate();
-            Assert.AreEqual(2, fair.no_of_rides);
+            invoiceGenerator.AddRide("Astha",2, 5);
+            invoiceGenerator.AddRide("Asita",12, 15);
+            var fair= invoiceGenerator.CalculateAggregate("Astha");
+            Assert.AreEqual(1, fair.no_of_rides);
         }
         [Test]
         public void CheckForAvgFare()
         {
-            invoiceGenerator.AddRide(2, 5);
-            invoiceGenerator.AddRide(12, 15);
-            var fair=invoiceGenerator.CalculateAggregate();
-            Assert.AreEqual(80, fair.avgFare);
+            invoiceGenerator.AddRide("Astha", 2, 5);
+            invoiceGenerator.AddRide("Asita", 12, 15);
+            var fair=invoiceGenerator.CalculateAggregate("Astha");
+            Assert.AreEqual(25, fair.avgFare);
         }
     }
 }
