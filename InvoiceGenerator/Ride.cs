@@ -10,5 +10,6 @@ namespace InvoiceGenerator
     {
         public int distance;
         public int time;
+        public RideType type;
     }
 }

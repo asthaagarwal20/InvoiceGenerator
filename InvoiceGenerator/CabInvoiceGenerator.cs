@@ -13,7 +13,7 @@ namespace InvoiceGenerator
         const double MINIMUM_FAIR = 5;
         List<Ride> rides = new List<Ride>();
         RideRepository rideRepository = new RideRepository();
-        public double CalculateFair(double distance, double time)
+        public double CalculateFair(double distance, double time,RideType type)
         {
             double result = (distance * COST_PER_KM) + (time * COST_PER_MINUTE);
             if (result < MINIMUM_FAIR)
@@ -21,7 +21,7 @@ namespace InvoiceGenerator
             else
                 return result;
         }
-        public void AddRide(string name, int distance, int time)
+        public void AddRide(string name, int distance, int time,RideType rideType)
         { 
             var userRides = rideRepository.GetRideByUserId(name);
             if (userRides == null)
@@ -31,7 +31,8 @@ namespace InvoiceGenerator
                 {
                     distance = distance,
                     time = time,
-                });
+                    type = rideType
+                }) ;
                 rideRepository.AddRideInRepo(name, userRide);
             }
             else
@@ -40,6 +41,7 @@ namespace InvoiceGenerator
                 {
                     distance = distance,
                     time = time,
+                    type=rideType
                 });
                 rideRepository.AddRideInRepo(name, userRides);
             }
@@ -50,7 +52,7 @@ namespace InvoiceGenerator
             double fair = 0;
             foreach(Ride ride in userRides)
             {
-                fair+=CalculateFair(ride.distance,ride.time);
+                fair+=CalculateFair(ride.distance,ride.time,ride.type);
             }
             var summary = new InvoiceSummary()
             {
